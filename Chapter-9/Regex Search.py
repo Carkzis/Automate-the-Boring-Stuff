@@ -1,3 +1,9 @@
+"""
+Regex Search.
+Takes a user-defined regular expression, and returns any line in any text file
+with a match.
+"""
+
 from pathlib import Path
 import re
 
