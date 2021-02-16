@@ -1,3 +1,8 @@
+"""
+Mad Libs.
+Changes adjectives, nouns and verbs in a document with user-specified words.
+"""
+
 from pathlib import Path
 import re
 
