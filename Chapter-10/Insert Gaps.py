@@ -8,7 +8,7 @@ what I was thinking!
 
 import os, re, shutil
 
-extInput = input('Please confirm the name of the file for\
+externalInput = input('Please confirm the name of the file for\
 where you would like to introduce a gap:\n') # for inputting the file name
 
 # Regex to be used on the file names
@@ -16,14 +16,14 @@ prefixRegex = re.compile((r'([a-zA-Z]*)([0])*(([1-9])(\d)*)(\.([a-zA-Z]){2,3})+$
 
 # Gets the prefix of the filename before the number (e.g. spam) or None if
 # no prefix
-sImput = prefixRegex.search(extInput)
-if sImput != None:
-    prefix = sImput.group(1)
+splitInput = prefixRegex.search(externalInput)
+if splitInput != None:
+    prefix = splitInput.group(1)
 else:
     prefix = None
 
-# Regex using the prefix stored in the prefix variable
-totRegex = re.compile(r'^(%s)([0]*)(([1-9])(\d)*)(\.([a-zA-Z]){2,3})+$'%prefix)
+# Regex to search for files with the same prefix
+totalRegex = re.compile(r'^(%s)([0]*)(([1-9])(\d)*)(\.([a-zA-Z]){2,3})+$'%prefix)
 
 # Set up some variables.
 isFound = False # is false if there is no such file
@@ -33,12 +33,12 @@ fileList = [] # list for storing files with the prefix
 # a list
 for folderName, subFolders, filenames in os.walk('C:\\Users\\username\\files'):
     for filename in filenames:
-        mo = totRegex.search(filename)
+        mo = totalRegex.search(filename)
         if mo != None:
             fileList.append(filename)
-        if filename == extInput:
+        if filename == externalInput:
             isFound = True # flag gets changed as file is found
-            print('Found! Space made available for ' + extInput)
+            print('Found! Space made available for ' + externalInput)
 
 if isFound == False:
     print('No such file exists...') # Displays if file does not exist
@@ -46,7 +46,7 @@ else:
     for i in fileList[::-1]: # file exists, run through list backwards
         # so that we don't overwrite the subsequently numbered files
         # after renaming
-        mo = totRegex.search(i)
+        mo = totalRegex.search(i)
         num = int(mo.group(3)) # gets group 3, the item number, from file
         num2 = num + 1 # this will be for files moved up by one, after
         # the gap
@@ -61,7 +61,7 @@ else:
         shutil.copy(oldName, newName) # copies the file using a numbered
         # name that is one higher.
         print('New file created: ' + newName)
-        if extInput == i: # if, after changed the name, the old filename
+        if externalInput == i: # if, after changed the name, the old filename
             # was for that where wanted a gap, we can delete the old file
             # (as it has been copied) and then break out of the loop
             os.unlink(oldName)
