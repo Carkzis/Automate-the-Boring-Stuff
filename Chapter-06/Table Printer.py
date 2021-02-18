@@ -28,5 +28,3 @@ for i in range(4):
         print(tableData[i2][i].rjust(maxWidth), end='')
 
     print(end="\n")
-
-
