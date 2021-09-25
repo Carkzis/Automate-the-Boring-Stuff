@@ -1,4 +1,4 @@
-# Automate-the-Boring-Stuff
+# Automate the Boring Stuff
 My attempts at the projects in Automate the Boring Stuff.
 
 ## Description
