@@ -49,12 +49,12 @@ pyautogui.sleep(1)
 # checks to see if the send button is greyed out
 try: 
     pyautogui.click('mno.png') # this is a greyed out button! 
-except:
-    print('Message typed.')
-else:
+except:   
     print('Message isn\'t typing! Check it out!')
     sys.exit()
-
+else:
+    print('Message typed.')
+ 
 pyautogui.sleep(3)
 
 try:
